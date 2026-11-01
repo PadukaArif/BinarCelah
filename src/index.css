@@ -1,2 +1,57 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Approved BinarCelah Palette */
+  --color-navy: #112250;
+  --color-sapphire: #3B507D;
+  --color-warm-taupe: #BEB7A7;
+  --color-champagne: #E7E2CE;
+  --color-ivory: #F5F4F0;
+  --color-white: #FFFFFF;
+
+  /* Semantic Status Colors */
+  --color-status-verified-bg: #ECFDF5;
+  --color-status-verified-text: #065F46;
+  --color-status-verified-border: #A7F3D0;
+
+  --color-status-official-bg: #EFF6FF;
+  --color-status-official-text: #1E40AF;
+  --color-status-official-border: #BFDBFE;
+
+  --color-status-gap-bg: #FEF2F2;
+  --color-status-gap-text: #991B1B;
+  --color-status-gap-border: #FECACA;
+
+  --color-status-neutral-bg: #F1F5F9;
+  --color-status-neutral-text: #475569;
+  --color-status-neutral-border: #CBD5E1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-ivory);
+    color: #1e293b;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

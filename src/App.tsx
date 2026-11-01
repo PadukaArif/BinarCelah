@@ -1,27 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ShieldCheck } from 'lucide-react'
-
-function RootView() {
-  return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 text-center max-w-md">
-        <ShieldCheck className="w-10 h-10 text-slate-700 mx-auto mb-3" />
-        <h1 className="text-xl font-semibold text-slate-900">BinarCelah</h1>
-        <p className="text-sm text-slate-600 mt-2">
-          Frontend foundation initialized.
-        </p>
-      </div>
-    </div>
-  )
-}
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { CaseOverviewPage } from './pages/CaseOverviewPage';
+import { CaseChronologyPage } from './pages/CaseChronologyPage';
+import { CaseGapsPage } from './pages/CaseGapsPage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RootView />} />
+        {/* Screen 1: Home / Issue Discovery */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* Screen 2: Case Workspace — Overview & Triangulation (BC-05.2) */}
+        <Route path="/kasus/:caseId/ringkasan" element={<CaseOverviewPage />} />
+
+        {/* Screen 3: Case Workspace — Chronology & Traceability (BC-05.3) */}
+        <Route path="/kasus/:caseId/kronologi" element={<CaseChronologyPage />} />
+
+        {/* Screen 4: Case Workspace — Accountability Gaps & Advocacy (BC-05.4) */}
+        <Route path="/kasus/:caseId/celah" element={<CaseGapsPage />} />
+
+        {/* Direct case ID access redirects to Overview */}
+        <Route path="/kasus/:caseId" element={<Navigate to="ringkasan" replace />} />
+
+        {/* Catch-all redirect to Home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
-
